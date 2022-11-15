@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { PostsModule } from './posts/posts.module';
 import envConfig from '../config/env';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PostsEntity } from './posts/posts.entity';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         type: 'mysql',
-        entities: [],
+        entities: [PostsEntity],
         host: configService.get('DB_HOST', 'localhost'),
         port: configService.get<number>('DB_PORT', 3306),
         username: configService.get('DB_USER', 'root'),
