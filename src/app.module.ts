@@ -1,3 +1,5 @@
+import { TagModule } from './tag/tag.module';
+import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -15,7 +17,6 @@ import { UserModule } from './user/user.module';
       envFilePath: [envConfig.path],
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         type: 'mysql',
@@ -33,6 +34,8 @@ import { UserModule } from './user/user.module';
     PostsModule,
     UserModule,
     AuthModule,
+    CategoryModule,
+    TagModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -7,6 +7,7 @@ import { TransformInterceptor } from './core/interceptor/transform/transform.int
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // 设置全局路由前缀
   app.setGlobalPrefix('api');
   // 注册全局错误过滤器
   app.useGlobalFilters(new HttpExceptionFilter());

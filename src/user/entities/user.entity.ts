@@ -59,6 +59,6 @@ export class User {
   @BeforeInsert()
   async encryptPwd() {
     if (!this.password) return;
-    this.password = await bcrypt.hashSync(this.password);
+    this.password = await bcrypt.hashSync(this.password, 10);
   }
 }

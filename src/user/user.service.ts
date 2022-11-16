@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { compareSync } from 'bcryptjs';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -43,6 +44,14 @@ export class UserService {
 
   async findByOpenid(openid: string) {
     return await this.userRepository.findOne({ where: { openid } });
+  }
+
+  update(id: number, updateUserDto: UpdateUserDto) {
+    return `This action updates a #${id} user`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} user`;
   }
 
   comparePassword(password, libPassword) {
