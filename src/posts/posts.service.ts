@@ -55,8 +55,6 @@ export class PostsService {
       .leftJoinAndSelect('post.tags', 'tag')
       .leftJoinAndSelect('post.author', 'user')
       .orderBy('post.updateTime', 'DESC');
-    qb.where('1 = 1');
-    qb.orderBy('post.create_time', 'DESC');
 
     const count = await qb.getCount();
     const { pageNum = 1, pageSize = 10, ...params } = query;
