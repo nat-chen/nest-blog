@@ -1,4 +1,4 @@
-import { RolesGuard } from './../auth/role.guard';
+import { RolesGuard, Roles } from './../auth/role.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { CreatePostDto, PostsRo } from './dto/create-post.dto';
 import {
@@ -15,7 +15,6 @@ import {
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PostsService } from './posts.service';
-import { Roles } from 'src/auth/role.guard';
 
 @ApiTags('文章')
 @Controller('posts')

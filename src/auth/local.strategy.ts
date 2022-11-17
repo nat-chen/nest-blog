@@ -17,7 +17,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     } as IStrategyOptions);
   }
 
-  async validate(username: string, password: string) {
+  async validate(username: string, password: string): Promise<User> {
     const user = await this.userRepository
       .createQueryBuilder('user')
       .addSelect('user.password') // user 实体 exclude 掉了 password 字段
@@ -29,5 +29,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     if (!compareSync(password, user.password)) {
       throw new BadRequestException('密码错误！');
     }
+    return user;
   }
 }
